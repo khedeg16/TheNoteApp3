@@ -22,9 +22,11 @@
             android:authorities="com.example.hedeg.thenoteapp"
             android:exported="false" />
 
-        <activity android:name=".EditorActivity"
+        <activity
+            android:name=".EditorActivity"
             android:label="EditorActivity"
-            android:parentActivityName="MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".Frontpage"></activity>
     </application>
 
 </manifest>
