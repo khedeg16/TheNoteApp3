@@ -7,6 +7,6 @@
     <string name="add_note">Add Note</string>
     <string name="new_note">New Note</string>
     <string name="note_message">New note</string>
-    <string name="send_post">Create</string>
+    <string name="send_post">New notes</string>
     <string name="note_updated">Note_Updated</string>
 </resources>
