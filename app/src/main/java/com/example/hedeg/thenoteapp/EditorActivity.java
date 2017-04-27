@@ -2,17 +2,21 @@ package com.example.hedeg.thenoteapp;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class EditorActivity extends AppCompatActivity {
 
     private String action;
     private EditText editor;
+    private String noteFilter;
+    private String oldText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,16 @@ public class EditorActivity extends AppCompatActivity {
         if (uri == null) {
             action = Intent.ACTION_INSERT;
             setTitle(getString(R.string.new_note));
+            //Gets the value of the note that is being pressed
+        } else{
+            action = Intent.ACTION_EDIT;
+            noteFilter = DBOpenHelper.NOTE_ID + "=" +uri.getLastPathSegment();
+            Cursor cursor = getContentResolver().query(uri,DBOpenHelper.ALL_COLUMNS,noteFilter,null,null);
+            cursor.moveToFirst();
+            oldText = cursor.getString(cursor.getColumnIndex(DBOpenHelper.NOTE_TEXT));
+            editor.setText(oldText);
+            editor.requestFocus();
+
         }
     }
 
@@ -57,8 +71,32 @@ public class EditorActivity extends AppCompatActivity {
                 } else {
                     insertNote(newText);
                 }
-        }
+                break;
+            case    Intent.ACTION_EDIT:
+                if (newText.length() ==0){
+                    //deleteNote()
+
+                         }
+                //if new&old note is the same - it cancels getting the string from the database
+
+                else if(oldText.equals((newText))) {
+        setResult(RESULT_CANCELED);
+                } else {
+                updateNote(newText);
+                }
+                }
+
+
         finish();
+    }
+
+    private void updateNote(String noteText) {
+        ContentValues values = new ContentValues();
+        values.put(DBOpenHelper.NOTE_TEXT, noteText);
+        getContentResolver().update(NotesProvider.CONTENT_URI, values, noteFilter, null);
+
+        Toast.makeText(this, getString(R.string.note_updated), Toast.LENGTH_SHORT).show();
+        setResult(RESULT_OK);
     }
 
     private void insertNote(String noteText) {

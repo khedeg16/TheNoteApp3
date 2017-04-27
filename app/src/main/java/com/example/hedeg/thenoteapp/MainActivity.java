@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import android.support.v4.widget.CursorAdapter;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,6 +47,16 @@ public class MainActivity extends AppCompatActivity
         ListView list =(ListView) findViewById(android.R.id.list);
         list.setAdapter(cursorAdapter);
 
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this,EditorActivity.class);
+                Uri uri = Uri.parse(NotesProvider.CONTENT_URI +"/" +1);
+                intent.putExtra(NotesProvider.CONTENT_ITEM_TYPE, uri);
+                startActivityForResult(intent,EDITOR_REQUEST_CODE);
+            }
+        });
 
         getLoaderManager().initLoader(0,null,this);
     }
