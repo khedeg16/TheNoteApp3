@@ -144,7 +144,7 @@ getMenuInflater().inflate(R.menu.menu_main,menu);
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
 cursorAdapter.swapCursor(data);
     }
-
+        // kasper is a dick!
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 cursorAdapter.swapCursor(null);
