@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TheNoteApp</string>
+    <string name="create_sample_data">Create sample data</string>
+    <string name="delete_all_notes">Delete all Notes</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="all_deleted">All deleted!</string>
+    <string name="add_note">Add Note</string>
+    <string name="new_note">New Note</string>
+</resources>

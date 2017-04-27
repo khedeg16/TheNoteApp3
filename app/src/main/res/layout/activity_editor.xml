@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/activity_editor"
+
+
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+
+    tools:context="com.example.hedeg.thenoteapp.EditorActivity">
+
+
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="345dp"
+        android:layout_height="465dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:gravity="top"
+    />
+
+</RelativeLayout>
