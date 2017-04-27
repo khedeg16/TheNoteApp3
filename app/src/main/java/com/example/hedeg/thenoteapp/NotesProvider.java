@@ -46,9 +46,19 @@ public class NotesProvider extends ContentProvider {
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
 
+        if(uriMatcher(uri)==NOTES_ID) {
+            selection = DBOpenHelper.NOTE_ID + "=" +uri.getLastPathSegment();
+
+        }
         return database.query(DBOpenHelper.TABLE_NOTES, DBOpenHelper.ALL_COLUMNS,selection,null,null,null,DBOpenHelper.NOTE_CREATED + " DESC");
 
     }
+
+        //This makes it crash :(
+    private int uriMatcher(Uri uri) {
+        return 0;
+    }
+
 
     @Nullable
     @Override
